@@ -1,0 +1,959 @@
+<!-- Archived version of https://member.citibikenyc.com/profile/trips/xxxxxxxx-x for use in unit tests -->
+<!-- 8/22/2015 -->
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
+<head>
+    <meta content="EightdNYCLabelBundle" name="edClientBundle">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content=
+    "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    name="viewport">
+
+    <title>New York City Bike Share | Trips</title>
+    <link href="/versions/1438801328/css/compiled/jquery.qtip.css" rel=
+    "stylesheet">
+    <link href="/versions/1438801328/css/compiled/base.css" rel="stylesheet">
+    <link href="/versions/1438801328/css/compiled/base2.css" rel="stylesheet">
+    <link href="/versions/1438801328/css/compiled/baseCustom.css" rel=
+    "stylesheet">
+    <link href="/versions/1438801328/css/compiled/smallTopPanelLayout.css" rel=
+    "stylesheet">
+    <link href="/versions/1438801328/css/compiled/nycCss.css" rel="stylesheet">
+    <link href="/versions/1438801328/css/compiled/nycPrintCss.css" media=
+    "print" rel="stylesheet">
+    <link href="/versions/1438801328/css/compiled/2columnsContentLayout.css"
+    rel="stylesheet">
+    <link href="/versions/1438801328/css/compiled/Profile/trips.css" rel=
+    "stylesheet">
+    <script src=
+    "/versions/1438801328/8dResources/eightdbike/libraries/jQuery/jquery-1.10.2.min.js"></script>
+    <script src=
+    "/versions/1438801328/8dResources/eightdbike/libraries/jQueryUI/jquery-ui-core-custom-1.11.1.js"></script>
+    <script>
+        jQuery(function () {
+                // All links will be disable if it has a class .disabled.
+                jQuery('a.disabled').click(function (e) {
+                    e.preventDefault();
+                });
+            })
+    </script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+                <script src="/versions/1438801328/js/compiled/base_IE8.js"></script>
+                <![endif]-->
+
+    <script src="/versions/1438801328/js/compiled/base.js"></script>
+    <script>
+                    ed.HiddenBeforeReady.onLoad(function () {
+                ed.HiddenBeforeReady.getInstance().addHidden();
+            });
+            ed.Type.setup(ed.AccountType, {
+    STANDARD: 'standard',
+    CORPORATE: 'corporate'});
+
+
+            Translator.locale = 'en';
+                        ed.AjaxAbort.setup();
+
+            jQuery(ed.Tooltip.setup);
+            jQuery(ed.Collapsible.setup);
+
+            ed.WindowSizeWatcher.getInstance().setup();
+    </script>
+    <script src="/versions/1438801328/js/compiled/baseNyc.js"></script>
+    <script>
+    ed.Type.setup(ed.DiscountCodeNychaGroupType, {
+    DEFAULT_TYPE: 'default',
+    NYCHA: 'nycha',
+    CDCU: 'cdcu',
+    CORPORATE: 'corporate'});
+
+    </script>
+    <script src="//tags.extole.com/121807/core.js"></script>
+    <link href="/versions/1438801328/8dResources/eightdbike/images/favicon.ico"
+    rel="shortcut icon" type="image/x-icon">
+    <script>
+            (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                (function () {
+                                        var memberAge = ed.DateUtil.age('1989-05-02');
+                                        var memberType = 'h';
+                    var memberGender = 'm';
+                    var currentLang = "en";
+
+                    
+                                        ga('create', 'UA-17974252-3', 'auto');
+                    ga('set', 'forceSSL', true);
+                    new ed.GoogleAnalyticsTracker(null, {"offer":1,"promotion":2});
+                    
+                    ed.GoogleAnalyticsTracker.setMemberAge(memberAge);
+                    ed.GoogleAnalyticsTracker.setCurrentLang(currentLang);
+                    ed.GoogleAnalyticsTracker.setMemberType(memberType);
+                    ed.GoogleAnalyticsTracker.setMemberGender(memberGender);
+                })();
+    </script>
+    <script>
+                            ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <div class="nyc-scope">
+        <script>
+jQuery(function () {
+        jQuery("#btn_mem_login").click(function () {
+            ed.PopupForm.getPopupById("loginPopupId").open({$target: jQuery("#btn_mem_login")});
+        })
+        jQuery("#btn_mem_mobile_login").click(function () {
+            ed.PopupForm.getPopupById("loginPopupId").open({$target: jQuery("#btn_mem_mobile_login")});
+        })
+        })
+        </script>
+
+        <header class="gradient" id="header">
+            <div class="gradient-header-blue gradient" id="header-bg-right">
+            </div>
+
+            <div class="row">
+                <div class="twelve columns">
+                    <nav class="top-bar">
+                        <ul>
+                            <!-- Title Area -->
+
+                            <li class="name">
+                                <h1><!-- Logo -->
+                                 <a href="http://www.citibikenyc.com/" id=
+                                "logo"><img alt=
+                                "Citi Bike - Operated by NYC Bike Share" src=
+                                "/versions/1438801328/8dResources/eightdbike/images/brand/logo.png">
+                                </a></h1>
+                            </li>
+
+                            <li class="toggle-topbar">
+                                <a href="#"></a>
+                            </li>
+                        </ul><!-- Social Media -->
+
+                        <nav class="hide-for-custom" id="social">
+                            <ul>
+                                <li>
+                                    <a class="button icon-facebook icon-large"
+                                    href="https://facebook.com/CitiBikeNYC"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button icon-twitter icon-large"
+                                    href="https://twitter.com/#!/CitiBikeNYC"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button icon-instagram icon-large"
+                                    href="https://instagram.com/citibike/"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button" href=
+                                    "http://www.citibikenyc.com/faq">Help</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <section>
+                            <!-- Left Nav Section -->
+
+                            <ul class="right">
+                                <li class="">
+                                    <a href="/profile/">Profile</a>
+                                </li>
+
+                                <li>
+                                    <a data-click-tracker="nav-logout" href=
+                                    "/profile/logout">Logout</a>
+                                </li>
+
+                                <li class="">
+                                    <a href="/map/">My stations</a>
+                                </li>
+
+                                <li class="has-dropdown">
+                                    <a href=
+                                    "http://www.citibikenyc.com/pricing">Membership
+                                    Options</a>
+
+                                    <ul class="dropdown">
+                                        <li class="first">
+                                            <a href=
+                                            "http://www.citibikenyc.com/pricing#annual">
+                                            Annual</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=
+                                            "http://www.citibikenyc.com/pricing#casual">
+                                            Short-term</a>
+                                        </li>
+
+                                        <li class="last">
+                                            <a href=
+                                            "http://www.citibikenyc.com/business-signup">
+                                            Group Membership</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="has-dropdown">
+                                    <a href=
+                                    "http://www.citibikenyc.com/how-it-works">How
+                                    It Works</a>
+
+                                    <ul class="dropdown">
+                                        <li class="first">
+                                            <a href=
+                                            "http://www.citibikenyc.com/how-it-works">
+                                            Overview</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=
+                                            "http://www.citibikenyc.com/faq">FAQ</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=
+                                            "http://www.citibikenyc.com/meet-the-bike">
+                                            Meet the Bike</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=
+                                            "http://www.citibikenyc.com/get-the-app">
+                                            Get The App</a>
+                                        </li>
+
+                                        <li>
+                                            <a href=
+                                            "http://www.citibikenyc.com/riding-tips">
+                                            Riding Tips</a>
+                                        </li>
+
+                                        <li class="last">
+                                            <a href=
+                                            "http://www.citibikenyc.com/resources">
+                                            Resources</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="last">
+                                    <a href="http://citibikeblog.tumblr.com/"
+                                    target="_new">Blog</a>
+                                </li>
+                            </ul>
+
+                            <ul class="show-for-custom">
+                                <li>
+                                    <a class="button icon-facebook icon-large"
+                                    href="https://facebook.com/CitiBikeNYC"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button icon-twitter icon-large"
+                                    href="https://twitter.com/#!/CitiBikeNYC"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button icon-instagram icon-large"
+                                    href="https://instagram.com/citibike/"
+                                    style="font-style: italic" target=
+                                    "_blank"></a>
+                                </li>
+
+                                <li>
+                                    <a class="button" href=
+                                    "http://www.citibikenyc.com/faq">Help</a>
+                                </li>
+                            </ul>
+                        </section>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div id="breadCrumbZoneWrapper">
+        <div class="ed-bread-crumb-zone ed-bread-crumb-zone_user">
+            <div class="ed-bread-crumb-zone__container">
+                <h1 class="ed-bread-crumb-zone__page-title"><a class=
+                "ed-bread-crumb-zone__page-title__link ed-bread-crumb-zone__page-title__link_user"
+                href="/profile/">Name Removed</a></h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="contentWrapper">
+        <div class="ed-global-noscript" id="contentContainer">
+            <noscript>For full functionality of this site it is necessary to
+            enable JavaScript. Here are the <a href=
+            "http://www.enable-javascript.com/" target="_blank">instructions
+            how to enable JavaScript in your web browser</a>.</noscript>
+            <script>
+jQuery(function() {
+            jQuery('.ed-global-noscript').removeClass('ed-global-noscript');
+            });
+            </script>
+
+            <div id="content">
+                <div id="leftContentWrapper">
+                    <div class="ed-profile-menu">
+                        <h2 class="ed-profile-menu__title">Manage my
+                        account</h2>
+
+                        <nav class="ed-profile-menu__navs">
+                            <ul class=
+                            "ed-profile-menu__link-list ed-profile-menu__link-list_level1 is-active-path-below">
+                            <li class=
+                            "ed-profile-menu__link ed-profile-menu__link_account-summary ed-profile-menu__link_level1">
+                                <a class="" href="/profile/">Account
+                                summary</a>
+                                </li>
+
+                                <li class=
+                                "ed-profile-menu__link ed-profile-menu__link_account-details ed-profile-menu__link_level1">
+                                <a class="" href="/profile/billingInfo">Billing
+                                information</a>
+
+                                    <ul class=
+                                    "ed-profile-menu__link-list ed-profile-menu__link-list_level2">
+                                    <li class=
+                                    "ed-profile-menu__link ed-profile-menu__link_billing-info-edit ed-profile-menu__link_level2">
+                                        <a class="" href=
+                                        "/profile/billingInfo/edit?cancel=default">
+                                            Modify billing information</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class=
+                                "ed-profile-menu__link ed-profile-menu__link_billing-statements ed-profile-menu__link_level1">
+                                <a class="" href="/profile/billingStatements">
+                                    Billing statements</a>
+                                </li>
+
+                                <li class=
+                                "ed-profile-menu__link ed-profile-menu__link_members ed-profile-menu__link_level1">
+                                <a class="" href="/profile/members">Members</a>
+
+                                    <ul class=
+                                    "ed-profile-menu__link-list ed-profile-menu__link-list_level2">
+                                    <li class=
+                                    "ed-profile-menu__link ed-profile-menu__link_member1 ed-profile-menu__link_level2">
+                                        <a class="" href="/profile/">Name Removed
+                                        <span class="format-member-name-type">
+                                            (account holder)</span></a>
+                                        </li>
+
+                                        <li class=
+                                        "ed-profile-menu__link ed-profile-menu__link_add-member ed-profile-menu__link_level2">
+                                        <a class="" href=
+                                        "/profile/addMember/?cancel=default&amp;memberId=xxxxxxxx-x">
+                                            Add members</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class=
+                                "ed-profile-menu__link ed-profile-menu__link_trips ed-profile-menu__link_level1 is-active-path">
+                                <a class="is-active-path" href=
+                                "/profile/trips/xxxxxxxx-x">Trips</a>
+
+                                    <ul class=
+                                    "ed-profile-menu__link-list ed-profile-menu__link-list_level2">
+                                    <li class=
+                                    "ed-profile-menu__link ed-profile-menu__link_member1 ed-profile-menu__link_level2 is-active-path">
+                                        <a class="is-active-path" href=
+                                        "/profile/trips/xxxxxxxx-x">Name Removed
+                                        <span class="format-member-name-type">
+                                            (account holder)</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class=
+                                "ed-profile-menu__link ed-profile-menu__link_subscriptions ed-profile-menu__link_level1">
+                                <a class="" href="/profile/buySubscription/">
+                                    Renew memberships</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><script type="extole/context">
+{"params":{
+                                            "f": "Name",
+                                            "l": "Removed",
+                                            "e": "email_removed"
+                                        }}
+
+
+                    </script> <span class=
+                    "ednyc-extole-cta ednyc-extole-cta_profile-page"><script type="extole/widget">
+{"zone": "my_account",
+                    "params": {
+                    "partner_user_id": "xxxxxxxx-x"
+                    }
+                    }
+
+                    </script></span>
+                </div>
+
+                <div id="mainContentWrapper">
+                    <div class="ed-profile-page">
+                        <h2 class="ed-profile-page__title">My trips</h2>
+
+                        <section class="ed-profile-page__content">
+                            <h3 class=
+                            "ed-trips-section__title ed-trips-section__title_closed-trips">
+                            Completed trips</h3>
+
+                            <div class=
+                            "ed-table_trips-wrapper ed-table_closed-trips-wrapper">
+                            <div class="ed-table ed-table_trip">
+                                    <div class="ed-table__headers">
+                                        <div class=
+                                        "ed-table__header ed-table__header_trip-start ed-table__col ed-table__col_trip-start">
+                                        Start
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__header ed-table__header_trip-end ed-table__col ed-table__col_trip-end">
+                                        End
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__header ed-table__header_trip-duration ed-table__col ed-table__col_trip-duration">
+                                        Duration
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__header ed-table__header_trip-cost ed-table__col ed-table__col_trip-cost">
+                                        Billed
+                                        </div>
+                                    </div>
+
+                                    <div class="ed-table__items">
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_odd">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/22/2015 8:43:30 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                Division St &amp; Bowery
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/22/2015 8:52:47 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            9 min 17 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_even">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/21/2015 7:25:40 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/21/2015 7:55:23 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            29 min 43 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_odd">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/20/2015 6:29:14 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/20/2015 7:00:04 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            30 min 50 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_even">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/19/2015 6:54:02 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/19/2015 7:27:11 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            33 min 9 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_odd">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/16/2015 10:25:57 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                Soissons Landing
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/16/2015 10:50:53 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Soissons Landing
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            24 min 56 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_even">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/15/2015 8:32:18 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                Division St &amp; Bowery
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/15/2015 8:43:07 AM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            10 min 49 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_odd">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/14/2015 7:45:44 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/14/2015 8:19:12 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            33 min 28 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_even">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/13/2015 7:13:20 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/13/2015 7:47:15 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            33 min 55 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_odd">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/13/2015 7:11:14 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/13/2015 7:11:31 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            0 min 17 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+
+                                        <div class=
+                                        "ed-table__item ed-table__item_trip ed-table__item_even">
+                                        <div class=
+                                        "ed-table__item__info ed-table__item__info_trip-start ed-table__col ed-table__col_trip-start">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-start-date">
+                                                08/12/2015 7:07:02 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-start-station">
+                                                W 34 St &amp; 11 Ave
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-end ed-table__col ed-table__col_trip-end">
+                                            <div class=
+                                            "ed-table__item__info__sub-info ed-table__item__info__sub-info_1 ed-table__item__info__sub-info_trip-end-date">
+                                                08/12/2015 7:40:27 PM
+                                                </div>
+
+                                                <div class=
+                                                "ed-table__item__info__sub-info ed-table__item__info__sub-info_2 ed-table__item__info__sub-info_trip-end-station">
+                                                Pearl St &amp; Hanover Square
+                                                </div>
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-duration ed-table__col ed-table__col_trip-duration">
+                                            33 min 25 s
+                                            </div>
+
+                                            <div class=
+                                            "ed-table__item__info ed-table__item__info_trip-cost ed-table__col ed-table__col_trip-cost">
+                                            $0.00
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ed-paginated-navigation_trips-wrapper">
+                                <div class=
+                                "ed-paginated-navigation ed-paginated-navigation_trips">
+                                <div class=
+                                "ed-paginated-navigation__container">
+                                        <div class=
+                                        "ed-paginated-navigation__pages-group ed-paginated-navigation__pages-group_previous">
+                                        <a class=
+                                        "ed-paginated-navigation__pages-group__link_first is-disabled disabled ed-paginated-navigation__pages-group__link"
+                                            href="#">Newest</a><a class=
+                                            "ed-paginated-navigation__pages-group__link_previous is-disabled disabled ed-paginated-navigation__pages-group__link"
+                                            href="#">Newer</a>
+                                        </div>
+
+                                        <div class=
+                                        "ed-paginated-navigation__pages-group ed-paginated-navigation__pages-next">
+                                        <a class=
+                                        "ed-paginated-navigation__pages-group__link_next ed-paginated-navigation__pages-group__link"
+                                            href=
+                                            "/profile/trips/xxxxxxxx-x?pageNumber=1">
+                                            Older</a><a class=
+                                            "ed-paginated-navigation__pages-group__link_last ed-paginated-navigation__pages-group__link"
+                                            href=
+                                            "/profile/trips/xxxxxxxx-x?pageNumber=1">Oldest</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nyc-scope">
+        <footer class="row" id="footer">
+            <hr id="divider">
+
+            <section class="twelve columns" id="copyright">
+                <!--__FUEL_MARKER__1-->
+
+                <p>Use of this Website constitutes acceptance of the website
+                <a href="https://www.citibikenyc.com/terms-of-use">Terms of Use
+                Agreement</a> and <a href=
+                "https://www.citibikenyc.com/privacy">Privacy Policy</a>.</p>
+
+                <p>© Copyright 2013 - 2015 Motivate International, Inc. All
+                rights reserved.<br>
+                Citi, Citi with Arc Design and Citi Bike are registered service
+                marks of Citigroup, Inc</p>
+
+                <p>Powered by "<a href="http://www.8d.com/" target="_blank">8D
+                Technologies Inc.</a>"</p>
+            </section>
+        </footer>
+    </div>
+
+    <div class="ed-popup-form-background" id="formBackPopupId" style=
+    "display:none;"></div><script>
+    jQuery(function () {
+            var $popupForm = jQuery("#popupFormYesNoProto")
+            $popupForm.edData("edPopupForm_initOptions", [])
+        })
+    </script> <script>
+    jQuery(function () {
+            var $popupForm = jQuery("#popupFormYesNoProto")
+            var popup = new ed.PopupFormYesNo($popupForm, jQuery("#formBackPopupId "));
+            ed.PopupForm.registerPopup(popup, "popupFormYesNoProto" );
+        })
+    </script>
+
+    <div class="ed-popup-form-container" id="popupFormYesNoProto" style=
+    "display:none;">
+        <div class="ed-popup-form ed-popup-form_yes-no">
+            <h1 class="ed-popup-form__title"></h1>
+
+            <div class="ed-popup-form__content-wrap">
+                <div class="ed-popup-form_yes-no__content">
+                    <div class="ed-popup-form_yes-no__msg"></div>
+                </div>
+
+                <div class="ed-popup-form_yes-no__btns">
+                    <button class=
+                    "ed-popup-form_yes-no__btn ed-popup-form_yes-no__btn-yes">Yes</button>
+                    <button class=
+                    "ed-popup-form_yes-no__btn ed-popup-form_yes-no__btn-no">No</button>
+                </div>
+            </div><button class="ed-popup-form__close-btn">X</button>
+        </div>
+    </div>
+
+    <div class="ed-js-templates ed-js-templates_base" style="display: none;">
+        <div class="ed-form-sections-wrap-loading-msg"></div>
+    </div><script>
+ed.JsTemplates.setupBasics(jQuery(".ed-js-templates_base"));
+    </script> <script>
+            eightdJQuery = jQuery.noConflict();
+    </script> <script src="/versions/1438801328/js/compiled/foundation.min.js"></script> <script>
+    jQuery = eightdJQuery;
+    </script>
+</body>
+</html>
