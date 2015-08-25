@@ -13,7 +13,7 @@ An API to retrieve personal CitiBike user data.
 
 ### Example Use
 
-    python
+    $ python
     >>> from utils.NYCCitiBikeParser import NYCCitiBikeParser
     >>> parser = NYCCitiBikeParser('username', 'password')
     >>> trips = parser.getTrips()
