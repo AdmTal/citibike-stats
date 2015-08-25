@@ -24,7 +24,7 @@ class NYCCitiBikeParser:
         self.__initialize_browser()
         self.__login(username, password)
 
-    def getTrips(self):
+    def get_trips(self):
         """
         Returns an array of the logged in users trips
         """
@@ -42,13 +42,13 @@ class NYCCitiBikeParser:
             trips_page = BeautifulSoup(trips_page_html, 'html.parser')
 
             trips = trips_page.find('div', class_='ed-table__items')
-            
+
             for trip in trips:
                 # TODO : This is strange, but while adding a test, sometimes trip was a 
                 # <class 'bs4.element.NavigableString'> instead of e <class 'bs4.element.Tag'>
                 if type(trip) != type(trips):
                     continue
-                parsed_trip = {}
+                parsed_trip = dict()
                 parsed_trip['start_date'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-start-date').text.strip()
                 parsed_trip['start_station'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-start-station').text.strip()
                 parsed_trip['end_date'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-end-date').text.strip()
@@ -69,7 +69,7 @@ class NYCCitiBikeParser:
         Accepts a page index, and returns a page from a users trip history
         """
         return self._browser.open(self.trips_page_url.format(
-            partner_user_id=self._partner_user_id, 
+            partner_user_id=self._partner_user_id,
             page_index=page_index)).read()
 
     def __login(self, username, password):

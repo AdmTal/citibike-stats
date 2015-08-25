@@ -1,7 +1,5 @@
 import unittest
-from mock import MagicMock, patch
-from mechanize import Browser
-from bs4 import BeautifulSoup
+from mock import patch
 ###
 from utils.NYCCitiBikeParser import NYCCitiBikeParser
 
@@ -11,15 +9,13 @@ trips_page_1 = open('tests/sample_data/trips_page_1.html').read()
 
 
 class NYCCitiBikeParserTest(unittest.TestCase):
-
     @patch.object(NYCCitiBikeParser, '_NYCCitiBikeParser__login')
     @patch.object(NYCCitiBikeParser, '_NYCCitiBikeParser__initialize_browser')
-    @patch.object(NYCCitiBikeParser, '_NYCCitiBikeParser__get_trips_page_html', 
-        side_effect=[trips_page_0, trips_page_0, trips_page_1])
-    def test_getTrips(self, mock_login, mock_initialize_browser, mock_get_trips_page_html):
-
+    @patch.object(NYCCitiBikeParser, '_NYCCitiBikeParser__get_trips_page_html',
+                  side_effect=[trips_page_0, trips_page_0, trips_page_1])
+    def test_get_trips(self, mock_login, mock_initialize_browser, mock_get_trips_page_html):
         parser = NYCCitiBikeParser('username', 'password')
-        trips = parser.getTrips()
+        trips = parser.get_trips()
 
         # check that there are 20 trips
         trip_count = len(trips)
@@ -35,8 +31,8 @@ class NYCCitiBikeParserTest(unittest.TestCase):
             self.assertIn('cost', trip, "Each trip should have an 'cost'")
 
         # check that the 5th trip matches the expected format
-        # from my lovely trip to Governers Island
-        governers_island_trip = {
+        # from my lovely trip to Governors Island
+        governors_island_trip = {
             'end_date': '08/16/2015 10:50:53 AM',
             'end_station': 'Soissons Landing',
             'duration': '24 min 56 s',
@@ -45,7 +41,7 @@ class NYCCitiBikeParserTest(unittest.TestCase):
             'start_date': '08/16/2015 10:25:57 AM'
         }
 
-        self.assertEquals(trips[4], governers_island_trip)
+        self.assertEquals(trips[4], governors_island_trip)
 
 
 
