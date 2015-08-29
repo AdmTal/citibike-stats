@@ -6,15 +6,27 @@ from .NYCCitiBikeParserExceptions import NYCCitiBikeLoginError
 
 
 class NYCCitiBikeParser:
-
     ###
     ### Constants
     ###
 
+    # urls
     login_url = 'https://member.citibikenyc.com/profile/login'
     login_form_action = 'https://member.citibikenyc.com/profile/login_check'
     login_success_url = 'https://member.citibikenyc.com/profile/'
     trips_page_url = 'https://member.citibikenyc.com/profile/trips/{partner_user_id}?pageNumber={page_index}'
+
+    # classes
+    start_date_class = 'ed-table__item__info__sub-info_trip-start-date'
+    start_station_class = 'ed-table__item__info__sub-info_trip-start-station'
+    end_date_class = 'ed-table__item__info__sub-info_trip-end-date'
+    end_station_class = 'ed-table__item__info__sub-info_trip-end-station'
+    duration_class = 'ed-table__item__info_trip-duration'
+    cost_class = 'ed-table__item__info_trip-cost'
+
+    last_link_class = 'ed-paginated-navigation__pages-group__link_last'
+
+    last_trip_class = 'ed-panel__link_last-trip'
 
     ###
     ### Public
@@ -33,11 +45,12 @@ class NYCCitiBikeParser:
         trips_page = BeautifulSoup(trips_page_html, 'html.parser')
 
         # Check the 'last' button to see how many pages of results there are
-        final_page_index = int(trips_page.find('a', class_='ed-paginated-navigation__pages-group__link_last').attrs['href'].split('pageNumber=')[1])
+        final_page_index = int(
+            trips_page.find('a', class_=self.last_link_class).attrs['href'].split('pageNumber=')[1])
 
         parsed_trips = []
 
-        for page_index in range(final_page_index+1):
+        for page_index in range(final_page_index + 1):
             trips_page_html = self.__get_trips_page_html(page_index)
             trips_page = BeautifulSoup(trips_page_html, 'html.parser')
 
@@ -45,16 +58,18 @@ class NYCCitiBikeParser:
 
             for trip in trips:
                 # TODO : This is strange, but while adding a test, sometimes trip was a 
-                # <class 'bs4.element.NavigableString'> instead of e <class 'bs4.element.Tag'>
+                # <class 'bs4.element.NavigableString'> instead of a <class 'bs4.element.Tag'>
+                # trips is the correct type, so currently checking against its type every time
                 if type(trip) != type(trips):
                     continue
+
                 parsed_trip = dict()
-                parsed_trip['start_date'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-start-date').text.strip()
-                parsed_trip['start_station'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-start-station').text.strip()
-                parsed_trip['end_date'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-end-date').text.strip()
-                parsed_trip['end_station'] = trip.find('div', class_='ed-table__item__info__sub-info_trip-end-station').text.strip()
-                parsed_trip['duration'] = trip.find('div', class_='ed-table__item__info_trip-duration').text.strip()
-                parsed_trip['cost'] = trip.find('div', class_='ed-table__item__info_trip-cost').text.strip()
+                parsed_trip['start_date'] = trip.find('div', class_=self.start_date_class).text.strip()
+                parsed_trip['start_station'] = trip.find('div', class_=self.start_station_class).text.strip()
+                parsed_trip['end_date'] = trip.find('div', class_=self.end_date_class).text.strip()
+                parsed_trip['end_station'] = trip.find('div', class_=self.end_station_class).text.strip()
+                parsed_trip['duration'] = trip.find('div', class_=self.duration_class).text.strip()
+                parsed_trip['cost'] = trip.find('div', class_=self.cost_class).text.strip()
 
                 parsed_trips.append(parsed_trip)
 
@@ -90,7 +105,8 @@ class NYCCitiBikeParser:
         profile_page_html = self._browser.response().read()
         profile_page = BeautifulSoup(profile_page_html, 'html.parser')
 
-        self._partner_user_id = profile_page.find('a', class_="ed-panel__link_last-trip").attrs['href'].split('/profile/trips/')[1].split('?')[0]
+        self._partner_user_id = \
+            profile_page.find('a', class_=self.last_trip_class).attrs['href'].split('/profile/trips/')[1].split('?')[0]
 
     def __initialize_browser(self):
         """
