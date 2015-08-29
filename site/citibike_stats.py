@@ -41,7 +41,7 @@ def get_trips():
 
 @app.route('/verify-login', methods=['POST'])
 @ssl_required
-def get_trips():
+def verify_login():
 
     # 'username' and 'password' are required
     if 'username' not in request.form or 'password' not in request.form:
