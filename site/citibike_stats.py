@@ -18,13 +18,20 @@ def get_trips():
     username = request.form['username']
     password = request.form['password']
 
+    # Due to the nature of Citibike rides, start_time can be used as an ID for a users trip
+    # If a start_time is passed, only parse results up to, but not including that start time
+    if 'start_date' in request.form:
+        start_date = int(request.form['start_date'])
+    else:
+        start_date = None
+
     try:
 
         # attempt to login
         nyc_citibike_parser = NYCCitiBikeParser(username, password)
 
         # get the trips
-        trips = nyc_citibike_parser.get_trips()
+        trips = nyc_citibike_parser.get_trips(start_date)
 
         # return the trips
         return jsonify({

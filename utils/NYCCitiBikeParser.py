@@ -37,9 +37,10 @@ class NYCCitiBikeParser:
     ### Public
     ###
 
-    def get_trips(self):
+    def get_trips(self, start_date=None):
         """
         Returns an array of the logged in users trips
+        If start_date is passed, will only return trips after the start_date
         """
         # Retrieve and parse the trips page
         trips_page_html = self.__get_trips_page_html()
@@ -70,6 +71,11 @@ class NYCCitiBikeParser:
                 parsed_trip['start_date'] = self.__parse_date(
                     trip.find('div', class_=self.start_date_class).text.strip()
                 )
+
+                # The trips are in reverse chronological order
+                # If the current start date matches the one passed in, stop collecting trips
+                if start_date and start_date == parsed_trip['start_date']:
+                    break
 
                 # Parse End Date
                 parsed_trip['end_date'] = self.__parse_date(
