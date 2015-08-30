@@ -25,12 +25,12 @@ An API to retrieve personal CitiBike user data.
     >>> trips = parser.getTrips()
     >>> trips[0]
     {
-        'end_date': u'08/22/20158: 52: 47AM',
+        'end_date': 1439736653,
         'end_station': u'Pearl St & Hanover Square',
         'duration': u'9min 17s',
         'cost': u'$0.00',
         'start_station': u'Division St & Bowery',
-        'start_date': u'08/22/2015 8:43:30AM'
+        'start_date': 1439735157
     }
 
 ### Run Tests
