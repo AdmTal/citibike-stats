@@ -1,4 +1,4 @@
-import time
+import pytz
 import datetime
 import mechanize
 import cookielib
@@ -11,6 +11,9 @@ class NYCCitiBikeParser:
     ###
     ### Constants
     ###
+
+    # Time Zone
+    tz = pytz.timezone("America/New_York")
 
     # urls
     login_url = 'https://member.citibikenyc.com/profile/login'
@@ -75,7 +78,7 @@ class NYCCitiBikeParser:
                 # The trips are in reverse chronological order
                 # If the current start date matches the one passed in, stop collecting trips
                 if start_date and start_date == parsed_trip['start_date']:
-                    break
+                    return parsed_trips
 
                 # Parse End Date
                 parsed_trip['end_date'] = self.__parse_date(
@@ -112,7 +115,9 @@ class NYCCitiBikeParser:
         Accepts a date, and returns a UNIX timestamp
         """
         if date and date != '-':
-            return int(time.mktime(datetime.datetime.strptime(date, self.date_format).timetuple()))
+            naive = datetime.datetime.strptime(date, self.date_format)
+            local_dt = self.tz.localize(naive, is_dst=None)
+            return int(local_dt.strftime("%s"))
         else:
             return 0
 
