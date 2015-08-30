@@ -33,12 +33,12 @@ class NYCCitiBikeParserTest(unittest.TestCase):
         # check that the 5th trip matches the expected format
         # from my lovely trip to Governors Island
         governors_island_trip = {
-            'end_date': '08/16/2015 10:50:53 AM',
+            'end_date': 1439736653,
             'end_station': 'Soissons Landing',
             'duration': '24 min 56 s',
             'cost': '$0.00',
             'start_station': 'Soissons Landing',
-            'start_date': '08/16/2015 10:25:57 AM'
+            'start_date': 1439735157
         }
 
         self.assertEquals(trips[4], governors_island_trip)

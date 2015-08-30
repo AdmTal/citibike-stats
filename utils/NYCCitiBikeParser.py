@@ -1,3 +1,5 @@
+import time
+import datetime
 import mechanize
 import cookielib
 from bs4 import BeautifulSoup
@@ -25,16 +27,15 @@ class NYCCitiBikeParser:
     cost_class = 'ed-table__item__info_trip-cost'
 
     last_link_class = 'ed-paginated-navigation__pages-group__link_last'
-
     last_trip_class = 'ed-panel__link_last-trip'
+
+    # Citibike Date Format
+    # 08/22/2015 8:52:47AM
+    date_format = "%m/%d/%Y %I:%M:%S %p"
 
     ###
     ### Public
     ###
-
-    def __init__(self, username, password):
-        self.__initialize_browser()
-        self.__login(username, password)
 
     def get_trips(self):
         """
@@ -64,9 +65,13 @@ class NYCCitiBikeParser:
                     continue
 
                 parsed_trip = dict()
-                parsed_trip['start_date'] = trip.find('div', class_=self.start_date_class).text.strip()
+                parsed_trip['start_date'] = self.__parse_date(
+                    trip.find('div', class_=self.start_date_class).text.strip()
+                )
+                parsed_trip['end_date'] = self.__parse_date(
+                    trip.find('div', class_=self.end_date_class).text.strip()
+                )
                 parsed_trip['start_station'] = trip.find('div', class_=self.start_station_class).text.strip()
-                parsed_trip['end_date'] = trip.find('div', class_=self.end_date_class).text.strip()
                 parsed_trip['end_station'] = trip.find('div', class_=self.end_station_class).text.strip()
                 parsed_trip['duration'] = trip.find('div', class_=self.duration_class).text.strip()
                 parsed_trip['cost'] = trip.find('div', class_=self.cost_class).text.strip()
@@ -78,6 +83,16 @@ class NYCCitiBikeParser:
     ###
     ### Private
     ###
+
+    def __init__(self, username, password):
+        self.__initialize_browser()
+        self.__login(username, password)
+
+    def __parse_date(self, date):
+        """
+        Accepts a date, and returns a UNIX timestamp
+        """
+        return int(time.mktime(datetime.datetime.strptime(date, self.date_format).timetuple()))
 
     def __get_trips_page_html(self, page_index=0):
         """
