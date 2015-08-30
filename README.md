@@ -3,9 +3,9 @@
 An API to retrieve personal CitiBike user data.
 
 ### To install
-1. Create a python virtual enviroment
-2. Activate the virtual enviroment
-3. install the dependancies
+1. Create a python virtual environment
+2. Activate the virtual environment
+3. install the dependencies
 
         $ virtualenv venv
         $ source venv/bin/activate
@@ -25,12 +25,12 @@ An API to retrieve personal CitiBike user data.
     >>> trips = parser.getTrips()
     >>> trips[0]
     {
-        'end_date': 1439736653,
-        'end_station': u'Pearl St & Hanover Square',
-        'duration': u'9min 17s',
-        'cost': u'$0.00',
-        'start_station': u'Division St & Bowery',
         'start_date': 1439735157
+        'end_date': 1439736653,
+        'duration': 1496,
+        'cost': 0.0,
+        'end_station': u'Pearl St & Hanover Square',
+        'start_station': u'Division St & Bowery',
     }
 
 ### Run Tests
