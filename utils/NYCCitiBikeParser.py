@@ -105,7 +105,7 @@ class NYCCitiBikeParser:
         """
         Accepts a date, and returns a UNIX timestamp
         """
-        if date:
+        if date and date != '-':
             return int(time.mktime(datetime.datetime.strptime(date, self.date_format).timetuple()))
         else:
             return 0
