@@ -13,7 +13,7 @@ class NYCCitiBikeParser:
     ###
 
     # Time Zone
-    tz = pytz.timezone("America/New_York")
+    nyc_tz = pytz.timezone("America/New_York")
 
     # urls
     login_url = 'https://member.citibikenyc.com/profile/login'
@@ -112,12 +112,13 @@ class NYCCitiBikeParser:
 
     def __parse_date(self, date):
         """
-        Accepts a date, and returns a UNIX timestamp
+        Accepts a date, and returns a UNIX timestamp (UTC)
         """
         if date and date != '-':
             naive = datetime.datetime.strptime(date, self.date_format)
-            local_dt = self.tz.localize(naive, is_dst=None)
-            return int(local_dt.strftime("%s"))
+            local_dt = self.nyc_tz.localize(naive, is_dst=None)
+            timestamp = (local_dt - datetime.datetime(1970, 1, 1, tzinfo=pytz.utc)).total_seconds()
+            return int(timestamp)
         else:
             return 0
 
