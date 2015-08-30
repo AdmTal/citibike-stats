@@ -114,7 +114,7 @@ class NYCCitiBikeParser:
         """
         Accepts a duration, an returns the duration in seconds
         """
-        if duration:
+        if duration and duration != '-':
             minutes, seconds = duration.split(' min ')
             minutes = int(minutes)
             if seconds:
