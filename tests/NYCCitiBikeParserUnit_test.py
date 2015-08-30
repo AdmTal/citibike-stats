@@ -35,8 +35,8 @@ class NYCCitiBikeParserTest(unittest.TestCase):
         governors_island_trip = {
             'end_date': 1439736653,
             'end_station': 'Soissons Landing',
-            'duration': '24 min 56 s',
-            'cost': '$0.00',
+            'duration': 1496,
+            'cost': 0.0,
             'start_station': 'Soissons Landing',
             'start_date': 1439735157
         }

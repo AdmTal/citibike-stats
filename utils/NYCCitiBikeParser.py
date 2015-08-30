@@ -65,16 +65,29 @@ class NYCCitiBikeParser:
                     continue
 
                 parsed_trip = dict()
+
+                # Parse Start Date
                 parsed_trip['start_date'] = self.__parse_date(
                     trip.find('div', class_=self.start_date_class).text.strip()
                 )
+
+                # Parse End Date
                 parsed_trip['end_date'] = self.__parse_date(
                     trip.find('div', class_=self.end_date_class).text.strip()
                 )
+
                 parsed_trip['start_station'] = trip.find('div', class_=self.start_station_class).text.strip()
                 parsed_trip['end_station'] = trip.find('div', class_=self.end_station_class).text.strip()
-                parsed_trip['duration'] = trip.find('div', class_=self.duration_class).text.strip()
-                parsed_trip['cost'] = trip.find('div', class_=self.cost_class).text.strip()
+
+                # Parse Duration
+                parsed_trip['duration'] = self.__parse_duration(
+                    trip.find('div', class_=self.duration_class).text.strip()
+                )
+
+                # Parse Cost
+                parsed_trip['cost'] = self.__parse_cost(
+                    trip.find('div', class_=self.cost_class).text.strip()
+                )
 
                 parsed_trips.append(parsed_trip)
 
@@ -92,7 +105,36 @@ class NYCCitiBikeParser:
         """
         Accepts a date, and returns a UNIX timestamp
         """
-        return int(time.mktime(datetime.datetime.strptime(date, self.date_format).timetuple()))
+        if date:
+            return int(time.mktime(datetime.datetime.strptime(date, self.date_format).timetuple()))
+        else:
+            return 0
+
+    def __parse_duration(self, duration):
+        """
+        Accepts a duration, an returns the duration in seconds
+        """
+        if duration:
+            minutes, seconds = duration.split(' min ')
+            minutes = int(minutes)
+            if seconds:
+                seconds = int(seconds.rstrip('s'))
+            else:
+                seconds = 0
+
+            return (minutes * 60) + seconds
+
+        else:
+            return 0
+
+    def __parse_cost(self, cost):
+        """
+        Accepts a cost string, and returns a float
+        """
+        if cost:
+            return float(cost[1:])
+        else:
+            return float(0)
 
     def __get_trips_page_html(self, page_index=0):
         """
