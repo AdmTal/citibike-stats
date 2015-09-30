@@ -126,8 +126,11 @@ class NYCCitiBikeParser:
         """
         Accepts a duration, an returns the duration in seconds
         """
-        print "Attempting to parse :: {}".format(duration)
+        hours = 0
         if duration and duration != '-':
+            if duration.find('h') != -1:
+                hours, duration = duration.split(' h ')
+                hours = int(hours)
             minutes, seconds = duration.split(' min ')
             minutes = int(minutes)
             if seconds:
@@ -135,7 +138,7 @@ class NYCCitiBikeParser:
             else:
                 seconds = 0
 
-            return (minutes * 60) + seconds
+            return (hours * 60 * 60) + (minutes * 60) + seconds
 
         else:
             return 0
